@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jiggle Protein Jelly Drink</title>
+    <style>
+      :root {
+        --bg: #050816;
+        --bg-soft: #0b1022;
+        --accent-yellow: #ffe66d;
+        --accent-teal: #4fd1c5;
+        --accent-pink: #f687b3;
+        --text-main: #f7fafc;
+        --text-muted: #a0aec0;
+        --border-soft: rgba(255, 255, 255, 0.08);
+        --card-radius: 18px;
+        --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #1a365d 0, #050816 50%, #020207 100%);
+        color: var(--text-main);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding: 32px 20px 48px;
+        max-width: 1120px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .badge-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+
+      .logo-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        background: radial-gradient(circle at 30% 20%, #fff7c2, #f6e05e);
+        box-shadow: 0 0 12px rgba(246, 224, 94, 0.9);
+      }
+
+      .badge {
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(6, 78, 59, 0.7));
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 32px;
+        align-items: center;
+      }
+
+      .title {
+        font-size: clamp(36px, 5vw, 48px);
+        line-height: 1.05;
+        margin: 0 0 12px;
+      }
+
+      .title span {
+        background: linear-gradient(120deg, #f6e05e, #4fd1c5, #f687b3);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        color: var(--text-muted);
+        max-width: 520px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+
+      .hero-highlights {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 26px;
+      }
+
+      .pill {
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        background: rgba(15, 23, 42, 0.7);
+        font-size: 12px;
+        color: var(--text-muted);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .pill strong {
+        color: var(--accent-yellow);
+        font-weight: 600;
+      }
+
+      .hero-footer {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .cta-main {
+        padding: 10px 20px;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #1a202c;
+        background: linear-gradient(135deg, #f6e05e, #4fd1c5);
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.6);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .cta-main span {
+        font-size: 18px;
+      }
+
+      .support-text {
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      .support-text strong {
+        color: var(--accent-teal);
+        font-weight: 500;
+      }
+
+      .can-stack {
+        position: relative;
+        padding: 18px;
+        border-radius: 26px;
+        background: radial-gradient(circle at top, #1a365d, #020617 60%, #000 100%);
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+      }
+
+      .glow-orbit {
+        position: absolute;
+        inset: -40%;
+        background:
+          radial-gradient(circle at 10% 0%, rgba(250, 240, 137, 0.55), transparent 55%),
+          radial-gradient(circle at 90% 0%, rgba(72, 187, 218, 0.5), transparent 55%),
+          radial-gradient(circle at 50% 110%, rgba(244, 114, 182, 0.55), transparent 50%);
+        opacity: 0.45;
+        filter: blur(22px);
+        pointer-events: none;
+      }
+
+      .can-content {
+        position: relative;
+        display: grid;
+        gap: 16px;
+      }
+
+      .flavour-tags {
+        display: inline-flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+
+      .flavour-pill {
+        font-size: 11px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        color: var(--text-muted);
+      }
+
+      .nutrition-grid {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .nutri-card {
+        flex: 1 1 90px;
+        min-width: 0;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.6);
+      }
+
+      .nutri-label {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+      }
+
+      .nutri-value {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .nutri-note {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      .note {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .note span {
+        color: var(--accent-pink);
+      }
+
+      .layout-main {
+        max-width: 1120px;
+        width: 100%;
+        margin: 0 auto 64px;
+        padding: 0 20px 32px;
+        display: grid;
+        grid-template-columns: 1.4fr 1.1fr;
+        gap: 28px;
+      }
+
+      .card {
+        border-radius: var(--card-radius);
+        background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.86));
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-soft);
+        padding: 20px 18px;
+      }
+
+      .card h2 {
+        font-size: 18px;
+        margin: 0 0 6px;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+      }
+
+      .card p {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin: 0 0 14px;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .pill-soft {
+        padding: 5px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        font-size: 11px;
+        color: var(--text-muted);
+        background: rgba(15, 23, 42, 0.85);
+      }
+
+      .pill-soft.athlete {
+        border-color: rgba(66, 153, 225, 0.9);
+      }
+      .pill-soft.ols {
+        border-color: rgba(236, 201, 75, 0.9);
+      }
+      .pill-soft.onco {
+        border-color: rgba(129, 230, 217, 0.9);
+      }
+
+      .product-line {
+        padding: 10px 0;
+        border-top: 1px solid rgba(148, 163, 184, 0.35);
+      }
+
+      .product-line:first-of-type {
+        border-top: none;
+        padding-top: 0;
+      }
+
+      .product-line-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: baseline;
+        margin-bottom: 4px;
+      }
+
+      .product-line-title {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .product-line-tag {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .product-line ul {
+        margin: 4px 0 0 18px;
+        padding: 0;
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      .product-line li + li {
+        margin-top: 2px;
+      }
+
+      .onco-highlight {
+        background: radial-gradient(circle at top left, rgba(72, 187, 120, 0.15), transparent 55%);
+        border-color: rgba(72, 187, 120, 0.4);
+      }
+
+      .onco-chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+      }
+
+      .onco-chip {
+        font-size: 11px;
+        padding: 5px 9px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.95);
+        border: 1px solid rgba(72, 187, 120, 0.7);
+        color: #b9fbc0;
+      }
+
+      .comfort-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .comfort-item {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .comfort-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        margin-top: 5px;
+        background: linear-gradient(135deg, #f6e05e, #f687b3);
+      }
+
+      .comfort-text-title {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+
+      .comfort-text-body {
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      .footer {
+        max-width: 1120px;
+        padding: 0 20px 32px;
+        margin: 0 auto;
+        font-size: 11px;
+        color: #718096;
+      }
+
+      .footer span {
+        color: #f6ad55;
+      }
+
+      @media (max-width: 880px) {
+        .hero-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .layout-main {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .can-stack {
+          order: -1;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero {
+          padding-top: 20px;
+        }
+        .layout-main {
+          margin-bottom: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="badge-row">
+          <div class="logo-dot"></div>
+          <span class="badge">Jiggle &mdash; protein jelly for real-life what ifs</span>
+        </div>
+        <div class="hero-grid">
+          <div>
+            <h1 class="title">
+              <span>Jiggle</span> protein jelly<br />
+        
+            </h1>
+            <p class="subtitle">
+              A soft, easy-to-swallow jelly inspired by Morinaga&mdash;designed for athletes,
+              older adults, and people going through chemo who need protein and comfort,
+              not another dry biscuit.
+            </p>
+            <div class="hero-highlights">
+              <div class="pill">
+                <strong>15 g protein</strong>
+                per 100 g pouch
+              </div>
+              <div class="pill">
+                <strong>Lemon salt</strong>
+                &amp; <strong>coconut</strong> flavours
+              </div>
+              <div class="pill">
+                <strong>Soft jelly drink</strong>
+                for dry, sore mouths
+              </div>
+            </div>
+            <div class="hero-footer">
+              <button class="cta-main" onclick="document.getElementById('lines').scrollIntoView({behavior: 'smooth'})">
+                Explore product lines
+                <span>↓</span>
+              </button>
+              <p class="support-text">
+                Co-developed with a simple question: <strong>&ldquo;What if chemo snacks felt kind?&rdquo;</strong>
+              </p>
+            </div>
+          </div>
+
+          <aside class="can-stack" aria-label="Jiggle nutrition snapshot">
+            <div class="glow-orbit"></div>
+            <div class="can-content">
+              <div>
+                <div class="flavour-tags">
+                  <span class="flavour-pill">Lemon Salt</span>
+                  <span class="flavour-pill">Coconut</span>
+                </div>
+                <p class="note">
+                  Each Jiggle pouch is a <span>100 g</span> serving of gently flavoured, high-protein jelly.
+                </p>
+              </div>
+              <div class="nutrition-grid">
+                <div class="nutri-card">
+                  <div class="nutri-label">Protein</div>
+                  <div class="nutri-value">15 g</div>
+                  <div class="nutri-note">from whey protein isolate (WPI)</div>
+                </div>
+                <div class="nutri-card">
+                  <div class="nutri-label">Texture</div>
+                  <div class="nutri-value">Soft</div>
+                  <div class="nutri-note">easy to slurp, low chew</div>
+                </div>
+                <div class="nutri-card">
+                  <div class="nutri-label">Electrolytes</div>
+                  <div class="nutri-value">Yes</div>
+                  <div class="nutri-note">support for hydration &amp; fatigue</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </header>
+
+      <main class="layout-main" id="lines">
+        <section class="card">
+          <p class="eyebrow">Three lines, one idea</p>
+          <h2>Jiggle for every what-if moment</h2>
+          <p>
+            We keep the base simple: 100&nbsp;g of soft jelly, 15&nbsp;g of WPI protein, and flavours that cut through mouth
+            dryness and metallictaste. From there, each line is tuned for what your body is going through.
+          </p>
+
+          <div class="pill-row">
+            <span class="pill-soft athlete">Athlete &bull; WPI + BCAA</span>
+            <span class="pill-soft ols">Everyday &bull; WPI + collagen</span>
+            <span class="pill-soft onco">Friendly Snack &bull; WPI + electrolytes + ginger</span>
+          </div>
+
+          <div class="product-line">
+            <div class="product-line-header">
+              <div class="product-line-title">1. Jiggle Athlete &mdash; WPI + BCAA</div>
+              <div class="product-line-tag">For training, race days &amp; recovery</div>
+            </div>
+            <ul>
+              <li>Fast-absorbing whey protein isolate plus BCAAs to support muscle repair.</li>
+              <li>Lemon salt flavour for a light, not-too-sweet taste with a hint of electrolytes.</li>
+              <li>Grab-and-go pouch when solid food feels too heavy before or after a workout.</li>
+            </ul>
+          </div>
+
+          <div class="product-line">
+            <div class="product-line-header">
+              <div class="product-line-title">2. Jiggle Everyday &mdash; WPI + collagen</div>
+              <div class="product-line-tag">For older adults &amp; low appetite days</div>
+            </div>
+            <ul>
+              <li>WPI plus collagen to support muscles, joints, and skin.</li>
+              <li>Gentle coconut and lemon salt flavours to avoid taste fatigue.</li>
+              <li>Soft jelly texture that is kinder on sore mouths and tired jaws.</li>
+            </ul>
+          </div>
+
+          <div class="product-line onco-highlight">
+            <div class="product-line-header">
+              <div class="product-line-title">3. Jiggle Friend &mdash; WPI + electrolytes + ginger</div>
+              <div class="product-line-tag">For people on chemo</div>
+            </div>
+            <ul>
+              <li>WPI to help reduce muscle loss when eating is hard.</li>
+              <li>Coconut water and lemon salt base to support hydration and replenish electrolytes.</li>
+              <li>Ginger notes to gently support nausea relief.</li>
+              <li>Built as an alternative to the typical dry biscuits in oncology wards.</li>
+            </ul>
+            <div class="onco-chip-row">
+              <span class="onco-chip">Soft on dry, sore mouths</span>
+              <span class="onco-chip">Flavour designed for altered taste</span>
+              <span class="onco-chip">Tasty but not cloyingly sweet</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <p class="eyebrow">Why jelly, not biscuits?</p>
+          <h2>Made for dry mouth, soreness &amp; taste changes</h2>
+          <p>
+            Chemo can make everything taste wrong. Mouths feel dry, sore, and every bite of a biscuit feels like work.
+            Jiggle is built as a small kindness for those days when you still need protein, but chewing is the last thing
+            you want to do.
+          </p>
+
+          <div class="comfort-list">
+            <div class="comfort-item">
+              <div class="comfort-dot"></div>
+              <div>
+                <div class="comfort-text-title">Soft, slippery texture</div>
+                <div class="comfort-text-body">
+                  Jelly drink slides instead of scraping. Less friction on sore mouths and throats.
+                </div>
+              </div>
+            </div>
+
+            <div class="comfort-item">
+              <div class="comfort-dot"></div>
+              <div>
+                <div class="comfort-text-title">Flavours that cut through chemo taste</div>
+                <div class="comfort-text-body">
+                  Bright lemon salt and gentle coconut are chosen to be refreshing, not overpowering, to work around
+                  distorted taste without feeling artificial.
+                </div>
+              </div>
+            </div>
+
+            <div class="comfort-item">
+              <div class="comfort-dot"></div>
+              <div>
+                <div class="comfort-text-title">Small, meaningful serving</div>
+                <div class="comfort-text-body">
+                  100&nbsp;g is enough to matter nutritionally, but small enough to finish even on low-appetite days,
+                  whether in hospital or at home.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Jiggle is a concept product designed to explore a kinder, high-protein snack for athletes, everyday lives and
+          people receiving chemotherapy. <span>Not medical advice:</span> final formulations should always be checked with
+          healthcare teams and dietitians for safety and suitability.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
+
