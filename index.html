@@ -48,7 +48,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-bottom: 18px;
+        margin-bottom: 8px;
         flex-wrap: wrap;
       }
 
@@ -69,6 +69,10 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--text-muted);
+      }
+
+      .hero-logo {
+        margin-bottom: 18px;
       }
 
       .hero-grid {
@@ -97,6 +101,18 @@
         max-width: 520px;
         line-height: 1.5;
         margin-bottom: 20px;
+      }
+
+      .hero-title-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .hero-logo {
+        flex-shrink: 0;
       }
 
       .hero-highlights {
@@ -254,6 +270,85 @@
         display: grid;
         grid-template-columns: 1.4fr 1.1fr;
         gap: 28px;
+      }
+
+      .section-wide {
+        max-width: 1120px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 20px 28px;
+      }
+
+      .compare-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 12px;
+      }
+
+      .compare-card {
+        border-radius: var(--card-radius);
+        background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.86));
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-soft);
+        padding: 16px 14px;
+        overflow: hidden;
+      }
+
+      .compare-illu {
+        width: 100%;
+        height: auto;
+        border-radius: 14px;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        background: radial-gradient(circle at top, rgba(79, 209, 197, 0.16), rgba(15, 23, 42, 0.92));
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 6px;
+        margin-bottom: 12px;
+      }
+
+      .compare-title-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+      }
+
+      .compare-title {
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .compare-tag {
+        font-size: 11px;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+
+      .compare-card ul {
+        margin: 0 0 0 18px;
+        padding: 0;
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.45;
+      }
+
+      .compare-card li + li {
+        margin-top: 4px;
+      }
+
+      .compare-note {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin: 10px 0 0;
+      }
+
+      .compare-note strong {
+        color: var(--accent-yellow);
+        font-weight: 600;
       }
 
       .card {
@@ -425,6 +520,10 @@
         .can-stack {
           order: -1;
         }
+
+        .compare-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
       }
 
       @media (max-width: 600px) {
@@ -446,13 +545,39 @@
         </div>
         <div class="hero-grid">
           <div>
-            <h1 class="title">
-              <span>Jiggle</span> protein jelly<br />
-        
-            </h1>
+            <div class="hero-title-row">
+              <h1 class="title">
+                <span>Jiggle</span> protein jelly
+              </h1>
+              <div class="hero-logo">
+                <svg width="180" height="52" viewBox="0 0 180 52" xmlns="http://www.w3.org/2000/svg" aria-labelledby="jiggleLogoTitle" role="img">
+                  <defs>
+                    <linearGradient id="jiggleGradient" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#F6E05E"/>
+                      <stop offset="50%" stop-color="#4FD1C5"/>
+                      <stop offset="100%" stop-color="#F687B3"/>
+                    </linearGradient>
+                    <filter id="jiggleBlobShadow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="rgba(0,0,0,0.6)"/>
+                    </filter>
+                    <clipPath id="jiggleBlobClip">
+                      <path d="M22 6C12 6 6 13 6 22C6 33 13 40 23 40C31 40 36 36 40 31C45 25 48 23 53 23C61 23 66 18 66 11C66 6 62 2 55 2C48 2 44 5 40 9C36 4 30 2 22 6Z"/>
+                    </clipPath>
+                  </defs>
+                  <g filter="url(#jiggleBlobShadow)" clip-path="url(#jiggleBlobClip)">
+                    <path d="M22 6C12 6 6 13 6 22C6 33 13 40 23 40C31 40 36 36 40 31C45 25 48 23 53 23C61 23 66 18 66 11C66 6 62 2 55 2C48 2 44 5 40 9C36 4 30 2 22 6Z"
+                          fill="url(#jiggleGradient)" opacity="0.9"/>
+                    <!-- Smiley face on the jelly blob -->
+                    <circle cx="20" cy="20" r="2.2" fill="#F7FAFC" opacity="0.9" />
+                    <circle cx="28" cy="20" r="2.2" fill="#F7FAFC" opacity="0.9" />
+                    <path d="M18 26C20.5 29 24 30 28 29" stroke="#F7FAFC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
             <p class="subtitle">
-              A soft, easy-to-swallow jelly inspired by Morinaga&mdash;designed for athletes,
-              older adults, and people going through chemo who need protein and comfort,
+              A soft, easy-to-swallow jelly drink inspired by Japanese-style protein jelly&mdash;designed for athletes,
+              everyday life, and people going through chemo who need protein and comfort,
               not another dry biscuit.
             </p>
             <div class="hero-highlights">
@@ -489,7 +614,7 @@
                   <span class="flavour-pill">Coconut</span>
                 </div>
                 <p class="note">
-                  Each Jiggle pouch is a <span>100 g</span> serving of gently flavoured, high-protein jelly.
+                  Each Jiggle pouch is a <span>100 g</span> serving of gently flavoured, high-protein jelly drink.
                 </p>
               </div>
               <div class="nutrition-grid">
@@ -514,13 +639,76 @@
         </div>
       </header>
 
+      <section class="section-wide" id="market">
+        <div class="card">
+          <p class="eyebrow">What exists today</p>
+          <h2>Why many current snacks still don&rsquo;t work</h2>
+          <p>
+            There are already protein jellies, sweet puddings, and ward snacks. But many options miss the moment people
+            actually need help: low appetite, dry mouth, sore mouth, and taste changes (like a metallic taste).
+          </p>
+
+          <div class="compare-grid" role="list">
+            <div class="compare-card" role="listitem">
+              <div class="compare-illu" aria-hidden="true">
+                <img src="morinaga.jpg" alt="Current protein jelly drink pouch" style="display: block; max-width: 100%; max-height: 140px; height: auto; object-fit: contain; border-radius: 12px; margin: 0 auto;" />
+              </div>
+              <div class="compare-title-row">
+                <p class="compare-title">Current protein jelly drink</p>
+                <span class="compare-tag">Brittle &amp; artificial</span>
+              </div>
+              <ul>
+                <li><strong>Brittle jelly texture</strong> that can break into chunks instead of sliding smoothly.</li>
+                <li><strong>Artificial flavour</strong> and aftertaste that become obvious with low appetite.</li>
+                <li><strong>High sugar</strong> profile that feels more like candy than a gentle nutrition drink.</li>
+              </ul>
+            </div>
+
+            <div class="compare-card" role="listitem">
+              <div class="compare-illu" aria-hidden="true">
+                <img src="gelatein.jpg" alt="Gelatin dessert cup" style="display: block; max-width: 100%; max-height: 140px; height: auto; object-fit: contain; border-radius: 12px; margin: 0 auto;" />
+              </div>
+              <div class="compare-title-row">
+                <p class="compare-title">Gelatin dessert cups</p>
+                <span class="compare-tag">High sugar</span>
+              </div>
+              <ul>
+                <li><strong>Sugar packed</strong> jelly that leans heavy into sweetness.</li>
+                <li><strong>Dessert-style flavour</strong> that can be tiring or nauseating during chemo.</li>
+                <li><strong>Not designed</strong> for dry mouth, sore mouth, or metallic taste changes.</li>
+              </ul>
+            </div>
+
+            <div class="compare-card" role="listitem">
+              <div class="compare-illu" aria-hidden="true">
+                <img src="luxury.jpg" alt="Luxury biscuit used as a snack" style="display: block; max-width: 100%; max-height: 140px; height: auto; object-fit: contain; border-radius: 12px; margin: 0 auto;" />
+              </div>
+              <div class="compare-title-row">
+                <p class="compare-title">Luxury biscuits &amp; dry ward snacks</p>
+                <span class="compare-tag">Dry &amp; effortful</span>
+              </div>
+              <ul>
+                <li><strong>Dry texture</strong> that can scratch and worsen mouth dryness or soreness.</li>
+                <li><strong>Crumbly biscuit</strong> that takes effort to chew and swallow.</li>
+                <li><strong>Often low protein</strong>, mainly offering calories instead of targeted nutrition.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="compare-note">
+            Real-world references: a current protein jelly drink (brittle, artificial, sugary), a gelatin dessert cup, and a
+            luxury biscuit often seen in wards &mdash; all helpful to see what Jiggle is trying to do differently.
+          </p>
+        </div>
+      </section>
+
       <main class="layout-main" id="lines">
         <section class="card">
           <p class="eyebrow">Three lines, one idea</p>
           <h2>Jiggle for every what-if moment</h2>
           <p>
-            We keep the base simple: 100&nbsp;g of soft jelly, 15&nbsp;g of WPI protein, and flavours that cut through mouth
-            dryness and metallictaste. From there, each line is tuned for what your body is going through.
+            We keep the base simple: 100&nbsp;g of soft jelly drink, 15&nbsp;g of WPI protein, and flavours that cut through mouth
+            dryness and metallic taste. From there, each line is tuned for what your body is going through.
           </p>
 
           <div class="pill-row">
@@ -544,19 +732,19 @@
           <div class="product-line">
             <div class="product-line-header">
               <div class="product-line-title">2. Jiggle Everyday &mdash; WPI + collagen</div>
-              <div class="product-line-tag">For older adults &amp; low appetite days</div>
+              <div class="product-line-tag">For everyone &amp; refuel</div>
             </div>
             <ul>
               <li>WPI plus collagen to support muscles, joints, and skin.</li>
               <li>Gentle coconut and lemon salt flavours to avoid taste fatigue.</li>
-              <li>Soft jelly texture that is kinder on sore mouths and tired jaws.</li>
+              <li>Protein packed snack that is guilt-free and easy to grab</li>
             </ul>
           </div>
 
           <div class="product-line onco-highlight">
             <div class="product-line-header">
               <div class="product-line-title">3. Jiggle Friend &mdash; WPI + electrolytes + ginger</div>
-              <div class="product-line-tag">For people on chemo</div>
+              <div class="product-line-tag">For low appetite</div>
             </div>
             <ul>
               <li>WPI to help reduce muscle loss when eating is hard.</li>
@@ -619,8 +807,8 @@
 
       <footer class="footer">
         <p>
-          Jiggle is a concept product designed to explore a kinder, high-protein snack for athletes, everyday lives and
-          people receiving chemotherapy. <span>Not medical advice:</span> final formulations should always be checked with
+          Jiggle is a concept product designed to explore a kinder, high-protein snack for athletes, everyday life and
+          people with low appetite. <span>Not medical advice:</span> final formulations should always be checked with
           healthcare teams and dietitians for safety and suitability.
         </p>
       </footer>
